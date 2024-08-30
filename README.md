@@ -7,8 +7,17 @@ cd cafe-manager-backend
 
 npm install
 
+
+touch .env
+
+# Database connection string
 DATABASE_URL=mysql://user:password@localhost:3306/cafemanager
+
+# Application port
 PORT=3001
+
+# Node environment (development, production, etc.)
+NODE_ENV=development
 
 npm run dev
 
