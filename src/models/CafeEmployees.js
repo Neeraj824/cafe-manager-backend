@@ -10,11 +10,11 @@ const CafeEmployees = sequelize.define("CafeEmployees", {
     primaryKey: true,
   },
   employee_id: {
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     allowNull: false,
   },
   cafe_id: {
-    type: DataTypes.STRING,
+    type: DataTypes.UUID,
     allowNull: false,
   },
   start_date: {
