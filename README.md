@@ -16,6 +16,7 @@ DB_USER=root
 DB_PASSWORD=12345678
 DB_NAME=cafe_manager
 
+
 # Application port
 PORT=3001
 
