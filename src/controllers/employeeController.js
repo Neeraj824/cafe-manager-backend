@@ -24,7 +24,7 @@ exports.getEmployeesByCafe = async (req, res) => {
         include: [
           { 
             model: Employee, 
-            attributes: ["id","name", "email_address", "phone_number"] 
+            attributes: ["id","name", "email_address", "phone_number","gender"] 
           },
          { 
           model: Cafe, 
@@ -40,6 +40,7 @@ exports.getEmployeesByCafe = async (req, res) => {
           id: cafeEmployee.Employee.id,
           name: cafeEmployee.Employee.name,
           email_address: cafeEmployee.Employee.email_address,
+          gender: cafeEmployee.Employee.gender,
           phone_number: cafeEmployee.Employee.phone_number,
           days_worked: daysWorked,
           cafe: cafeEmployee.Cafe ? cafeEmployee.Cafe.name : "",
