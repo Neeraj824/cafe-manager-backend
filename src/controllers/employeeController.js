@@ -60,6 +60,21 @@ exports.createEmployee = async (req, res) => {
       const { name, email_address, phone_number, gender,cafe_id } = req.body;
       
       const employeeId = `UI${Math.random().toString(36).substr(2, 7).toUpperCase()}`;
+      const existingEmployee = await Employee.findOne({
+        where: {
+          [Op.or]: [
+            { email_address },
+            { phone_number },
+          ]
+        }
+      });
+  
+      if (existingEmployee) {
+        return res.status(400).json({
+          error: "Validation error",
+          message: "An employee with the same email address, phone number, or gender already exists."
+        });
+      }
       const newEmployee = await Employee.create({ id: employeeId, name, email_address, phone_number, gender });
       if(cafe_id){
         await CafeEmployees.create({
@@ -98,9 +113,7 @@ exports.createEmployee = async (req, res) => {
       employee.name = name || employee.name;
       employee.email_address = email_address || employee.email_address;
       employee.phone_number = phone_number || employee.phone_number;
-      employee.gender = gender || employee.gender;
-      employee.cafe_id = cafe_id || employee.cafe_id;
-  
+      employee.gender = gender || employee.gender;  
       await employee.save();
 
       if (cafe_id) {
